@@ -3,3 +3,4 @@
 Pipfile.lock
 
 .vagrant
+requirements.txt

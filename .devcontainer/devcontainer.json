@@ -1,0 +1,82 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.191.1/containers/debian
+{
+	"name": "Debian",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	// "build": {
+	// 	"dockerfile": "Dockerfile",
+	// 	// Update 'VARIANT' to pick an Debian version: bullseye, buster, stretch
+	// 	"args": { "VARIANT": "bullseye" }
+	// },
+
+	// Set *default* container specific settings.json values on container create.
+	"settings": { 
+		"sqltools.connections": [{
+			"name": "Container database",
+			"driver": "PostgreSQL",
+			"previewLimit": 50,
+			"server": "localhost",
+			"port": 5432,
+			"database": "postgres",
+			"username": "postgres",
+			"password": "postgres"
+		}],
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.languageServer": "Pylance",
+		"python.linting.enabled": true,
+		"python.linting.pylintEnabled": true,
+		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
+		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
+		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
+		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
+		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
+		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
+		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
+	},
+		
+	// Set *default* container specific settings.json values on container create.
+	// "settings": {
+	// 	"go.toolsManagement.checkForUpdates": "local",
+	// 	"go.useLanguageServer": true,
+	// 	"go.gopath": "/go",
+	// 	// "go.goroot": "/usr/local/go"
+	// },
+
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-azuretools.vscode-docker",
+		"ms-python.python",
+		"ms-python.vscode-pylance",
+		"ms-ossdata.vscode-postgresql"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [5432,3000],
+
+	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-from-docker.
+	// "mounts": [ "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind" ],
+
+	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+	// "runArgs": [
+	// 	// .envファイルのファイルを読み込んでcontainerに設定。remoteEnvでその値を参照してさらに複雑なことができる
+    //     "--env-file", ".env"
+    // ], 
+	// "remoteEnv": {
+
+	// 	// timezoneを日本にする。docker特有の環境変数。
+	// 	"TZ": "Asia/Tokyo",
+	// 	// chromeを日本語設定にするために必要。
+	// 	"LANG": "ja_JP.UTF-8",
+	// 	"LANGUAGE": "ja_JP.UTF-8",
+	// 	"LC_ALL": "ja_JP.UTF-8",
+	// },
+	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode"
+	// pip3 install -r Pipfile
+	// pipenv lock --requirements > requirements.txt
+}
