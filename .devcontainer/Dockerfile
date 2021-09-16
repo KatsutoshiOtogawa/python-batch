@@ -16,9 +16,15 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt install -y python3-pip \
     && pip3 install pipenv
 
+# vscodeが/usr/local/bin/pythonのpythonを見ているのでそちらにインストール
+RUN ln -s /usr/bin/python  /usr/local/bin/python
+
 # vscodeのextensionはグローバルにインストールしたもののみ対応なので、
 # グローバルにインストールする。
-RUN pip3 install flake8
+RUN pip3 install flake8 \
+    && pip3 install flake8 \
+    && pip3 install autopep8 \
+    && pip3 install pytest
 
 # chromeで使うamd64bitに依存するパッケージをインストールするためにamd64bitを有効化
 RUN dpkg --add-architecture amd64 \
@@ -34,5 +40,5 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN apt install -y task-japanese \
     && locale-gen ja_JP.UTF-8 \
     && localedef -f UTF-8 -i ja_JP ja_JP
-
+# autopep8
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*

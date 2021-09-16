@@ -26,27 +26,24 @@
 		"python.pythonPath": "/usr/local/bin/python",
 		"python.languageServer": "Pylance",
 		"python.linting.enabled": true,
-		"python.linting.pylintEnabled": true,
-		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
-		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-		"python.formatting.yapfPath": "/usr/local/py-utils/bin/yapf",
-		"python.linting.banditPath": "/usr/local/py-utils/bin/bandit",
-		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
-		"python.linting.mypyPath": "/usr/local/py-utils/bin/mypy",
-		"python.linting.pycodestylePath": "/usr/local/py-utils/bin/pycodestyle",
-		"python.linting.pydocstylePath": "/usr/local/py-utils/bin/pydocstyle",
-		"python.linting.pylintPath": "/usr/local/py-utils/bin/pylint",
-		"python.testing.pytestPath": "/usr/local/py-utils/bin/pytest"
+		"python.linting.pylintEnabled": false,
+        "python.linting.flake8Enabled": true,
+		"python.unitTest.pyTestArgs": [],
+   		"python.unitTest.pyTestEnabled": true,
+		// "python.formatting.autopep8Enabled": true,
+		// vscode公式のpythoncontainerで無いのでパスは修正している。
+		"python.formatting.autopep8Path": "/usr/local/bin/autopep8",
+		"python.formatting.blackPath": "/usr/local/bin/black",
+		"python.formatting.yapfPath": "/usr/local/bin/yapf",
+		"python.linting.banditPath": "/usr/local/bin/bandit",
+		"python.linting.flake8Path": "/usr/local/bin/flake8",
+		"python.linting.mypyPath": "/usr/local/bin/mypy",
+		"python.linting.pycodestylePath": "/usr/local/bin/pycodestyle",
+		"python.linting.pydocstylePath": "/usr/local/bin/pydocstyle",
+		"python.linting.pylintPath": "/usr/local/bin/pylint",
+		"python.testing.pytestPath": "/usr/local/bin/pytest"
 	},
 		
-	// Set *default* container specific settings.json values on container create.
-	// "settings": {
-	// 	"go.toolsManagement.checkForUpdates": "local",
-	// 	"go.useLanguageServer": true,
-	// 	"go.gopath": "/go",
-	// 	// "go.goroot": "/usr/local/go"
-	// },
-
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
 		"ms-azuretools.vscode-docker",
@@ -75,8 +72,9 @@
 	// 	"LANGUAGE": "ja_JP.UTF-8",
 	// 	"LC_ALL": "ja_JP.UTF-8",
 	// },
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "pipenv lock --requirements > requirements.txt && pip3 install -r requirements.txt",
+
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"
-	// pip3 install -r Pipfile
-	// pipenv lock --requirements > requirements.txt
 }
