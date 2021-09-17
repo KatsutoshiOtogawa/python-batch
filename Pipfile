@@ -3,10 +3,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 name = "pypi"
 
+[scripts]
+doc = "sphinx-build docs docs/_build"
+
 [packages]
 fire = "*"
 
 [dev-packages]
+sphinx = "*"
+sphinx_rtd_theme = "*"
 
 [requires]
 python_version = "3.9"

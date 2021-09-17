@@ -15,17 +15,20 @@ apt install -y nkf
 # set Asia/Tokyo
 timedatectl set-timezone Asia/Tokyo
 
+# aptのpipenvだと不具合があるので、python3-pip経由でpipenvをインストールすること。
 apt install -y python3-pip \
     && pip3 install pipenv
 
 # vscodeが/usr/local/bin/pythonのpythonを見ているのでそちらにインストール
-ln -s /usr/bin/python  /usr/local/bin/python
+# 
+ln -s /usr/bin/python3 /usr/local/bin/python
 
 # vscodeのextensionはグローバルにインストールしたもののみ対応なので、
 # グローバルにインストールする。
-pip3 install flake8 \
-    && pip3 install autopep8 \
-    && pip3 install pytest
+pip3 install \
+    flake8 \
+    autopep8 \
+    pytest \
 
 ln -s /usr/bin/flake8 /usr/local/bin/flake8
 ln -s /usr/bin/autopep8 /usr/local/bin/autopep8
@@ -52,8 +55,14 @@ apt-get clean \
 # set bash function
 su - vagrant -c 'cat < /vagrant/function.sh >> ~/.bashrc'
 
-su - vagrant << END
+# python仮想環境を使わないので~/.local/binへのパスが必要になる。
+su - vagrant -c 'echo PATH=$PATH:$HOME/.local/bin >> ~/.bashrc'
+
+# 仮想環境内なのでpipenvによるpython仮想環境を使わない。
+su - vagrant -c 'echo export PIPENV_IGNORE_VIRTUALENVS=1 >> ~/.bashrc' 
+
+su - vagrant -s /bin/bash << END
 cd /vagrant/
-pipenv lock --requirements > requirements.txt
+pipenv lock --requirements --dev > requirements.txt
 pip3 install -r requirements.txt
 END

@@ -73,7 +73,7 @@
 	// 	"LC_ALL": "ja_JP.UTF-8",
 	// },
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pipenv lock --requirements > requirements.txt && pip3 install -r requirements.txt",
+	"postCreateCommand": "pipenv lock --requirements --dev > requirements.txt && pip3 install -r requirements.txt",
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode"

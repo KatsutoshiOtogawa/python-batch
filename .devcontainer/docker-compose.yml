@@ -33,7 +33,9 @@ services:
       LANG: ja_JP.UTF-8
       LANGUAGE: ja_JP.UTF-8
       LC_ALL: ja_JP.UTF-8
-      VIRTUAL_ENV: docker
+
+      # 仮想環境内なのでpipenvによるpython仮想環境を使わない。
+      PIPENV_IGNORE_VIRTUALENVS: 1
 
     # Uncomment the next line to use a non-root user for all processes.
     user: vscode
