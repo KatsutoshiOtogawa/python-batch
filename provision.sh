@@ -24,9 +24,12 @@ ln -s /usr/bin/python  /usr/local/bin/python
 # vscodeのextensionはグローバルにインストールしたもののみ対応なので、
 # グローバルにインストールする。
 pip3 install flake8 \
-    && pip3 install flake8 \
     && pip3 install autopep8 \
     && pip3 install pytest
+
+ln -s /usr/bin/flake8 /usr/local/bin/flake8
+ln -s /usr/bin/autopep8 /usr/local/bin/autopep8
+ln -s /usr/bin/pytest /usr/local/bin/pytest
 
 # chromeで使うamd64bitに依存するパッケージをインストールするためにamd64bitを有効化
 dpkg --add-architecture amd64 \
@@ -49,4 +52,8 @@ apt-get clean \
 # set bash function
 su - vagrant -c 'cat < /vagrant/function.sh >> ~/.bashrc'
 
-su - vagrant -c 'pipenv lock --requirements > requirements.txt && pip3 install -r requirements.txt'
+su - vagrant << END
+cd /vagrant/
+pipenv lock --requirements > requirements.txt
+pip3 install -r requirements.txt
+END

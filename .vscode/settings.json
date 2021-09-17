@@ -1,0 +1,31 @@
+{ 
+    "sqltools.connections": [{
+        "name": "Container database",
+        "driver": "PostgreSQL",
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 5432,
+        "database": "postgres",
+        "username": "postgres",
+        "password": "postgres"
+    }],
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.languageServer": "Pylance",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.testing.pytestArgs": [],
+    "python.testing.pytestEnabled": true,
+    // "python.formatting.autopep8Enabled": true,
+    // vscode公式のpythoncontainerで無いのでパスは修正している。
+    "python.formatting.autopep8Path": "/usr/local/bin/autopep8",
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.formatting.yapfPath": "/usr/local/bin/yapf",
+    "python.linting.banditPath": "/usr/local/bin/bandit",
+    "python.linting.flake8Path": "/usr/local/bin/flake8",
+    "python.linting.mypyPath": "/usr/local/bin/mypy",
+    "python.linting.pycodestylePath": "/usr/local/bin/pycodestyle",
+    "python.linting.pydocstylePath": "/usr/local/bin/pydocstyle",
+    "python.linting.pylintPath": "/usr/local/bin/pylint",
+    "python.testing.pytestPath": "/usr/local/bin/pytest"
+}

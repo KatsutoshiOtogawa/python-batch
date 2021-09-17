@@ -22,7 +22,6 @@ RUN ln -s /usr/bin/python  /usr/local/bin/python
 # vscodeのextensionはグローバルにインストールしたもののみ対応なので、
 # グローバルにインストールする。
 RUN pip3 install flake8 \
-    && pip3 install flake8 \
     && pip3 install autopep8 \
     && pip3 install pytest
 
