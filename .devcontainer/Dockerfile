@@ -14,7 +14,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt upgrade -y 
 
 RUN apt install -y python3-pip \
-    && pip3 instlal pipenv
+    && pip3 install pipenv
 
 # vscodeが/usr/local/bin/pythonのpythonを見ているのでそちらにインストール
 RUN ln -s /usr/bin/python3  /usr/local/bin/python
@@ -24,11 +24,7 @@ RUN ln -s /usr/bin/python3  /usr/local/bin/python
 RUN pip3 install \
     flake8 \
     autopep8 \
-    pytest \
-
-RUN ln -s /usr/bin/flake8 /usr/local/bin/flake8 \
-    && ln -s /usr/bin/autopep8 /usr/local/bin/autopep8 \
-    && ln -s /usr/bin/pytest /usr/local/bin/pytest
+    pytest 
 
 # chromeで使うamd64bitに依存するパッケージをインストールするためにamd64bitを有効化
 RUN dpkg --add-architecture amd64 \

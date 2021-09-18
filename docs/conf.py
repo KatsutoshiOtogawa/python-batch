@@ -10,9 +10,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, '/workspace')
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../python_batch'))
 
 
 # -- Project information -----------------------------------------------------
@@ -35,9 +35,15 @@ release = 'v1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.todo',
 ]
+
+# autodoc_default_flags = [
+#   'members',
+#   'private-members'
+# ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

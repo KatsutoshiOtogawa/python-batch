@@ -27,5 +27,6 @@
     "python.linting.pycodestylePath": "/usr/local/bin/pycodestyle",
     "python.linting.pydocstylePath": "/usr/local/bin/pydocstyle",
     "python.linting.pylintPath": "/usr/local/bin/pylint",
-    "python.testing.pytestPath": "/usr/local/bin/pytest"
+    "python.testing.pytestPath": "/usr/local/bin/pytest",
+    "restructuredtext.confPath": ""
 }
