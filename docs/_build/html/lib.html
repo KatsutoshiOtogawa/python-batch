@@ -84,32 +84,53 @@
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-lib" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="lib.FTPUtil">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lib.</span></span><span class="sig-name descname"><span class="pre">FTPUtil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr1</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr2</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">lib.</span></span><span class="sig-name descname"><span class="pre">FTPUtil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passwd</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>A simple calculator class..</p>
+<p>FTPサーバーとのやりとりを表すclass</p>
 <p>Extended description of class</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="lib.FTPUtil.attr1">
-<span class="sig-name descname"><span class="pre">attr1</span></span><a class="headerlink" href="#lib.FTPUtil.attr1" title="Permalink to this definition"></a></dt>
-<dd><p>Description of attr1</p>
+<dt class="sig sig-object py" id="lib.FTPUtil.host">
+<span class="sig-name descname"><span class="pre">host</span></span><a class="headerlink" href="#lib.FTPUtil.host" title="Permalink to this definition"></a></dt>
+<dd><p>ログインするFTPサーバーのホスト名</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="lib.FTPUtil.attr2">
-<span class="sig-name descname"><span class="pre">attr2</span></span><a class="headerlink" href="#lib.FTPUtil.attr2" title="Permalink to this definition"></a></dt>
-<dd><p>Description of attr2</p>
+<dt class="sig sig-object py" id="lib.FTPUtil.user">
+<span class="sig-name descname"><span class="pre">user</span></span><a class="headerlink" href="#lib.FTPUtil.user" title="Permalink to this definition"></a></dt>
+<dd><p>ログインするFTPサーバーのユーザー名</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lib.FTPUtil.passwd">
+<span class="sig-name descname"><span class="pre">passwd</span></span><a class="headerlink" href="#lib.FTPUtil.passwd" title="Permalink to this definition"></a></dt>
+<dd><p>ログインするFTPサーバーのパスワード</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lib.FTPUtil.fileDownload">
-<span class="sig-name descname"><span class="pre">fileDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">downloadFile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil.fileDownload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil.fileDownload" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">fileDownload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">downloadFile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destinationFile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil.fileDownload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil.fileDownload" title="Permalink to this definition"></a></dt>
 <dd><p>ファイルのダウンロードを行います。</p>
 <p>Extended description of function.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>downloadFile</strong> (<em>str</em>) – パス付きでファイル名を与えてください。</p></li>
-<li><p><strong>arg2</strong> (<em>str</em>) – Description of arg2</p></li>
+<li><p><strong>destinationFile</strong> (<em>str</em>) – 保存先をパス付きでファイル名を与えてください。</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -119,12 +140,46 @@
 <dd class="field-odd"><p>bool</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ftpUtil</span> <span class="o">=</span> <span class="n">FTPUtil</span><span class="p">(</span><span class="n">ftp_host</span><span class="p">,</span> <span class="n">ftp_user</span><span class="p">,</span> <span class="n">ftp_password</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ftpUtil</span><span class="o">.</span><span class="n">fileDownload</span><span class="p">(</span><span class="s1">&#39;/G/remote.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;docs/local.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。</p>
+</div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lib.FTPUtil.fileUpload">
-<span class="sig-name descname"><span class="pre">fileUpload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil.fileUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil.fileUpload" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">fileUpload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">uploadFile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">destinationFile</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lib/ftputil.html#FTPUtil.fileUpload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lib.FTPUtil.fileUpload" title="Permalink to this definition"></a></dt>
+<dd><p>ファイルのダウンロードを行います。</p>
+<p>Extended description of function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uploadFile</strong> (<em>str</em>) – パス付きでアップロードするファイル名を与えてください。</p></li>
+<li><p><strong>destinationFile</strong> (<em>str</em>) – 保存先をパス付きでファイル名を与えてください。</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Description of return value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ftpUtil</span> <span class="o">=</span> <span class="n">FTPUtil</span><span class="p">(</span><span class="n">ftp_host</span><span class="p">,</span> <span class="n">ftp_user</span><span class="p">,</span> <span class="n">ftp_password</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ftpUtil</span><span class="o">.</span><span class="n">fileUpload</span><span class="p">(</span><span class="s1">&#39;docs/local.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;/G/remote.txt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。</p>
+</div>
+</dd></dl>
 
 </dd></dl>
 

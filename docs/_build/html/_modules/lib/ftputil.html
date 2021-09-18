@@ -64,28 +64,31 @@
            <div itemprop="articleBody">
              
   <h1>Source code for lib.ftputil</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">fire</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">fire</span>
 <span class="kn">from</span> <span class="nn">ftplib</span> <span class="kn">import</span> <span class="n">FTP</span>
 
 
 <div class="viewcode-block" id="FTPUtil"><a class="viewcode-back" href="../../lib.ftputil.html#lib.FTPUtil">[docs]</a><span class="k">class</span> <span class="nc">FTPUtil</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A simple calculator class..</span>
+    <span class="sd">&quot;&quot;&quot; FTPサーバーとのやりとりを表すclass</span>
 
 <span class="sd">    Extended description of class</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        attr1: Description of attr1</span>
-<span class="sd">        attr2: Description of attr2</span>
+<span class="sd">        host (str): ログインするFTPサーバーのホスト名</span>
+<span class="sd">        user (str): ログインするFTPサーバーのユーザー名</span>
+<span class="sd">        passwd (str): ログインするFTPサーバーのパスワード</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attr2</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">passwd</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;コンストラクタ</span>
 
 <span class="sd">        Extended description of function.</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            attr1 (str): パス付きでファイル名を与えてください。</span>
-<span class="sd">            attr2 (str): Description of arg2</span>
+<span class="sd">            host (str): ログインするFTPサーバーのホスト名</span>
+<span class="sd">            user (str): ログインするFTPサーバーのユーザー名</span>
+<span class="sd">            passwd (str): ログインするFTPサーバーのパスワード</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Description of return value</span>
@@ -93,40 +96,90 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="n">attr1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="n">attr2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">passwd</span> <span class="o">=</span> <span class="n">passwd</span>
 
-<div class="viewcode-block" id="FTPUtil.fileDownload"><a class="viewcode-back" href="../../lib.ftputil.html#lib.FTPUtil.fileDownload">[docs]</a>    <span class="k">def</span> <span class="nf">fileDownload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">downloadFile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="FTPUtil.fileDownload"><a class="viewcode-back" href="../../lib.ftputil.html#lib.FTPUtil.fileDownload">[docs]</a>    <span class="k">def</span> <span class="nf">fileDownload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">downloadFile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destinationFile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;ファイルのダウンロードを行います。</span>
 
 <span class="sd">        Extended description of function.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            downloadFile (str): パス付きでファイル名を与えてください。</span>
-<span class="sd">            arg2 (str): Description of arg2</span>
+<span class="sd">            destinationFile (str): 保存先をパス付きでファイル名を与えてください。</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            bool: Description of return value</span>
 
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; ftpUtil = FTPUtil(ftp_host, ftp_user, ftp_password)</span>
+<span class="sd">            &gt;&gt;&gt; ftpUtil.fileDownload(&#39;/G/remote.txt&#39;, &#39;docs/local.txt&#39;)</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="k">with</span> <span class="n">FTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;192.168.0.1&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftp</span><span class="p">:</span>
-            <span class="n">ftp</span><span class="o">.</span><span class="n">cwd</span><span class="p">(</span><span class="s1">&#39;/G/&#39;</span><span class="p">)</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;local.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">ftp</span><span class="o">.</span><span class="n">retrlines</span><span class="p">(</span><span class="s2">&quot;RETR remote.txt&quot;</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">)</span></div>
+        <span class="c1"># ファイル名とそのパスを取得</span>
+        <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">downloadFile</span><span class="p">)</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">downloadFile</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">FTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">passwd</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftp</span><span class="p">:</span>
+            <span class="n">ftp</span><span class="o">.</span><span class="n">cwd</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">destinationFile</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">ftp</span><span class="o">.</span><span class="n">retrlines</span><span class="p">(</span><span class="s2">&quot;RETR </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basename</span><span class="p">),</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">)</span></div>
 
     <span class="c1"># ファイルのアップロードを行うバイナリファイルでもこれを使う。</span>
-<div class="viewcode-block" id="FTPUtil.fileUpload"><a class="viewcode-back" href="../../lib.ftputil.html#lib.FTPUtil.fileUpload">[docs]</a>    <span class="k">def</span> <span class="nf">fileUpload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">with</span> <span class="n">FTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;192.168.0.1&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="s1">&#39;admin&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftp</span><span class="p">:</span>
-            <span class="n">ftp</span><span class="o">.</span><span class="n">cwd</span><span class="p">(</span><span class="s1">&#39;/G/&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="FTPUtil.fileUpload"><a class="viewcode-back" href="../../lib.ftputil.html#lib.FTPUtil.fileUpload">[docs]</a>    <span class="k">def</span> <span class="nf">fileUpload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uploadFile</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">destinationFile</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;ファイルのダウンロードを行います。</span>
+
+<span class="sd">        Extended description of function.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            uploadFile (str): パス付きでアップロードするファイル名を与えてください。</span>
+<span class="sd">            destinationFile (str): 保存先をパス付きでファイル名を与えてください。</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            bool: Description of return value</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            &gt;&gt;&gt; ftpUtil = FTPUtil(ftp_host, ftp_user, ftp_password)</span>
+<span class="sd">            &gt;&gt;&gt; ftpUtil.fileUpload(&#39;docs/local.txt&#39;, &#39;/G/remote.txt&#39;)</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># ファイル名とそのパスを取得</span>
+        <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">destinationFile</span><span class="p">)</span>
+        <span class="n">dirname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">destinationFile</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">FTP</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">passwd</span><span class="p">)</span> <span class="k">as</span> <span class="n">ftp</span><span class="p">:</span>
+            <span class="n">ftp</span><span class="o">.</span><span class="n">cwd</span><span class="p">(</span><span class="n">dirname</span><span class="p">)</span>
 
             <span class="c1"># テキストファイルでもバイナリモードで開く必要あり。</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;local.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">ftp</span><span class="o">.</span><span class="n">storlines</span><span class="p">(</span><span class="s2">&quot;STOR remote.txt&quot;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span></div></div>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">uploadFile</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">ftp</span><span class="o">.</span><span class="n">storlines</span><span class="p">(</span><span class="s2">&quot;STOR </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">basename</span><span class="p">),</span> <span class="n">f</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../../lib.ftputil.html#lib.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">ftpUtil</span> <span class="o">=</span> <span class="n">FTPUtil</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;シェルからのエントリーポイントです。</span>
+
+<span class="sd">    Extended description of function.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        $ python3 ftputil.py fileDownload /G/remote.txt docs/local.txt</span>
+<span class="sd">        $ python3 ftputil.py fileUpload docs/local.txt /G/remote.txt</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># 環境変数よりクラスの初期化パラメーター取得</span>
+    <span class="n">ftp_host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FTP_HOST&#39;</span><span class="p">]</span>
+    <span class="n">ftp_user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FTP_USER&#39;</span><span class="p">]</span>
+    <span class="n">ftp_password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FTP_PASSWORD&#39;</span><span class="p">]</span>
+
+    <span class="c1"># インスタンス作成 and シェルから実行</span>
+    <span class="n">ftpUtil</span> <span class="o">=</span> <span class="n">FTPUtil</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">ftp_host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">ftp_user</span><span class="p">,</span> <span class="n">passwd</span><span class="o">=</span><span class="n">ftp_password</span><span class="p">)</span>
     <span class="n">fire</span><span class="o">.</span><span class="n">Fire</span><span class="p">(</span><span class="n">ftpUtil</span><span class="p">)</span></div>
 
 

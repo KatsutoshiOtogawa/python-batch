@@ -1,0 +1,22 @@
+# [gae 設定の説明](https://cloud.google.com/appengine/docs/flexible/custom-runtimes/configuring-your-app-with-app-yaml?hl=ja)
+
+# このruntimeを元に自動的にGAEが指定する環境変数の値が設定される。
+runtime: python39
+# 無料枠
+env: standard
+
+# 無料枠 
+instance_class: F1
+service: default
+
+env_variables:
+  # [gae gcs](https://cloud.google.com/appengine/docs/flexible/nodejs/using-cloud-storage?hl=ja)
+  GCLOUD_STORAGE_BUCKET: YOUR_BUCKET_NAME
+  PGUSER: your_pguser
+  PGHOST: your_host
+  PGPASSWORD: your_password
+  PGDATABASE: your_database
+  PGPORT: 5432
+  MJ_APIKEY_PUBLIC: YOUR_PUBLIC_KEY
+  MJ_APIKEY_PRIVATE: YOUR_PRIVATE_KEY
+  VIEWS_DIR: YOUR_VIEWS_DIR
