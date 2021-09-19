@@ -6,3 +6,6 @@ Pipfile.lock
 .vagrant
 requirements.txt
 __pycache__
+
+log/*
+!/log/.gitignore

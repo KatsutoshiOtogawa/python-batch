@@ -1,6 +1,7 @@
 import os
 import fire
 from ftplib import FTP
+from .logger import LOGGER
 
 
 class FTPUtil(object):
@@ -54,6 +55,7 @@ class FTPUtil(object):
             エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。
         """
 
+        LOGGER.debug(downloadFile, destinationFile)
         # ファイル名とそのパスを取得
         basename = os.path.basename(downloadFile)
         dirname = os.path.dirname(downloadFile)

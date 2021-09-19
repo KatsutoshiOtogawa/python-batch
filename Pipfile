@@ -11,6 +11,7 @@ doc_build = "bash -c 'cd docs && make html'"
 
 [packages]
 fire = "*"
+google-cloud-logging = "*"
 
 [dev-packages]
 sphinx = "*"
