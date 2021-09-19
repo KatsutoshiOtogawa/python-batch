@@ -16,6 +16,11 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN apt install -y python3-pip \
     && pip3 install pipenv
 
+# postgresql クライアント用のやつを使う
+RUN apt install -y postgresql \
+    libpq-dev \
+    python3-dev
+
 # vscodeが/usr/local/bin/pythonのpythonを見ているのでそちらにインストール
 RUN ln -s /usr/bin/python3  /usr/local/bin/python
 

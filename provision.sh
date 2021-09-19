@@ -19,6 +19,12 @@ timedatectl set-timezone Asia/Tokyo
 apt install -y python3-pip \
     && pip3 install pipenv
 
+
+# postgresql クライアント用のやつを使う
+apt install -y postgresql \
+    libpq-dev \
+    python3-dev
+
 # vscodeが/usr/local/bin/pythonのpythonを見ているのでそちらにインストール
 # 
 ln -s /usr/bin/python3 /usr/local/bin/python
