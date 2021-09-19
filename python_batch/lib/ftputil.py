@@ -57,8 +57,8 @@ class FTPUtil(object):
 
         LOGGER.debug(
             'message="will download ftp server"',
-            'downloadFile={}'.format(downloadFile),
-            'destinationFile={}'.format(destinationFile)
+            'downloadFile="{}"'.format(downloadFile),
+            'destinationFile="{}"'.format(destinationFile)
         )
         # ファイル名とそのパスを取得
         basename = os.path.basename(downloadFile)
@@ -66,17 +66,17 @@ class FTPUtil(object):
         with FTP(host=self.host, user=self.user, passwd=self.passwd) as ftp:
             LOGGER.debug(
                 'message="success login ftp server"',
-                'host={}'.format(self.host),
-                'user={}'.format(self.user)
+                'host="{}"'.format(self.host),
+                'user="{}"'.format(self.user)
             )
             ftp.cwd(dirname)
             with open(destinationFile, "w") as f:
-                ftp.retrlines("RETR {}".format(basename), f.write)
+                ftp.retrlines('RETR {}'.format(basename), f.write)
 
             LOGGER.info(
                 'message="success download these files"',
-                'downloadFile={}'.format(downloadFile),
-                'destinationFile={}'.format(destinationFile)
+                'downloadFile="{}"'.format(downloadFile),
+                'destinationFile="{}"'.format(destinationFile)
             )
 
     # ファイルのアップロードを行うバイナリファイルでもこれを使う。
@@ -102,8 +102,8 @@ class FTPUtil(object):
 
         LOGGER.debug(
             'message="will upload ftp server"',
-            'uploadFile={}'.format(uploadFile),
-            'destinationFile={}'.format(destinationFile)
+            'uploadFile="{}"'.format(uploadFile),
+            'destinationFile="{}"'.format(destinationFile)
         )
         # ファイル名とそのパスを取得
         basename = os.path.basename(destinationFile)
@@ -111,8 +111,8 @@ class FTPUtil(object):
         with FTP(host=self.host, user=self.user, passwd=self.passwd) as ftp:
             LOGGER.debug(
                 'message="success login ftp server"',
-                'host={}'.format(self.host),
-                'user={}'.format(self.user)
+                'host="{}"'.format(self.host),
+                'user="{}"'.format(self.user)
             )
             ftp.cwd(dirname)
 
@@ -122,8 +122,8 @@ class FTPUtil(object):
 
             LOGGER.info(
                 'message="success upload these files"',
-                'uploadFile={}'.format(uploadFile),
-                'destinationFile={}'.format(destinationFile)
+                'uploadFile="{}"'.format(uploadFile),
+                'destinationFile="{}"'.format(destinationFile)
             )
 
 

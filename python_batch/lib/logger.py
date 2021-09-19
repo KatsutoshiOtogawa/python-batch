@@ -76,15 +76,15 @@ def checkOutput(errorLevel: str, message='should print out such string.'):
     """
 
     if errorLevel == 'ERROR':
-        LOGGER.error(message)
+        LOGGER.error('message="{}"'.format(message))
     elif errorLevel == 'WARNING':
-        LOGGER.warning(message)
+        LOGGER.warning('message="{}"'.format(message))
     elif errorLevel == 'INFO':
-        LOGGER.info(message)
+        LOGGER.info('message="{}"'.format(message))
     elif errorLevel == 'DEBUG':
-        LOGGER.debug(message)
+        LOGGER.debug('message="{}"'.format(message))
     else:
-        LOGGER.error('not found such error level.')
+        LOGGER.error('message="not found such error level."')
 
 
 def main():
