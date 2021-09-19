@@ -55,14 +55,29 @@ class FTPUtil(object):
             エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。
         """
 
-        LOGGER.debug(downloadFile, destinationFile)
+        LOGGER.debug(
+            'message="will download ftp server"',
+            'downloadFile={}'.format(downloadFile),
+            'destinationFile={}'.format(destinationFile)
+        )
         # ファイル名とそのパスを取得
         basename = os.path.basename(downloadFile)
         dirname = os.path.dirname(downloadFile)
         with FTP(host=self.host, user=self.user, passwd=self.passwd) as ftp:
+            LOGGER.debug(
+                'message="success login ftp server"',
+                'host={}'.format(self.host),
+                'user={}'.format(self.user)
+            )
             ftp.cwd(dirname)
             with open(destinationFile, "w") as f:
                 ftp.retrlines("RETR {}".format(basename), f.write)
+
+            LOGGER.info(
+                'message="success download these files"',
+                'downloadFile={}'.format(downloadFile),
+                'destinationFile={}'.format(destinationFile)
+            )
 
     # ファイルのアップロードを行うバイナリファイルでもこれを使う。
     def fileUpload(self, uploadFile: str, destinationFile: str):
@@ -85,15 +100,31 @@ class FTPUtil(object):
             エラー処理はやっていないので、落ちたらダメになったタイミングで変更しましょう。
         """
 
+        LOGGER.debug(
+            'message="will upload ftp server"',
+            'uploadFile={}'.format(uploadFile),
+            'destinationFile={}'.format(destinationFile)
+        )
         # ファイル名とそのパスを取得
         basename = os.path.basename(destinationFile)
         dirname = os.path.dirname(destinationFile)
         with FTP(host=self.host, user=self.user, passwd=self.passwd) as ftp:
+            LOGGER.debug(
+                'message="success login ftp server"',
+                'host={}'.format(self.host),
+                'user={}'.format(self.user)
+            )
             ftp.cwd(dirname)
 
             # テキストファイルでもバイナリモードで開く必要あり。
             with open(uploadFile, "rb") as f:
                 ftp.storlines("STOR {}".format(basename), f)
+
+            LOGGER.info(
+                'message="success upload these files"',
+                'uploadFile={}'.format(uploadFile),
+                'destinationFile={}'.format(destinationFile)
+            )
 
 
 def main():
